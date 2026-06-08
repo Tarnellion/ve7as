@@ -73,7 +73,7 @@ const DICT = {
    Note: Base64 is light obfuscation against basic scrapers, not cryptography.
    For real URL protection use a server-side redirect endpoint instead.
    To encode: btoa('https://your-target-url.com')                          */
-const _D = 'aHR0cHM6Ly9leGFtcGxlLmNvbS9wcm9tbw==';
+const _D = 'aHR0cHM6Ly9sa3ZuLmNjLzczOTVhNQ==';
 
 /* ── Language Detection ─────────────────────────────────────────────────── */
 function detectLang() {
