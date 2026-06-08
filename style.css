@@ -1,0 +1,378 @@
+/* ── Custom Properties ───────────────────────────────── */
+:root {
+  --bg:         #0a0a1a;
+  --gold:       #ffd700;
+  --gold-dark:  #ff8c00;
+  --green:      #39ff14;
+  --danger:     #ff4455;
+  --text:       #ffffff;
+  --text-dim:   rgba(255, 255, 255, 0.58);
+  --r-sm:       7px;
+  --r-md:       14px;
+  --r-lg:       24px;
+}
+
+/* ── Reset ───────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { height: 100%; -webkit-tap-highlight-color: transparent; }
+
+body {
+  min-height: 100dvh;
+  background: var(--bg);
+  background-image:
+    radial-gradient(ellipse 70% 55% at 10% 40%, rgba(80, 0, 170, 0.28) 0%, transparent 60%),
+    radial-gradient(ellipse 70% 55% at 90% 60%, rgba(0, 55, 140, 0.28) 0%, transparent 60%);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-x: hidden;
+}
+
+/* ── App ─────────────────────────────────────────────── */
+#app {
+  width: 100%;
+  max-width: 480px;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem 1rem 2rem;
+  position: relative;
+}
+
+/* ── Header ──────────────────────────────────────────── */
+.page-header { text-align: center; margin-bottom: 1.8rem; }
+
+.stars {
+  font-size: 0.7rem;
+  letter-spacing: 0.45em;
+  color: var(--gold);
+  opacity: 0.65;
+  margin-bottom: 0.55rem;
+}
+
+.page-header h1 {
+  font-size: clamp(1.3rem, 6vw, 1.9rem);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.page-header p {
+  margin-top: 0.4rem;
+  font-size: clamp(0.8rem, 3.6vw, 0.95rem);
+  color: var(--text-dim);
+}
+
+/* ── Game ────────────────────────────────────────────── */
+.game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.game-hint {
+  font-size: clamp(0.8rem, 3.6vw, 0.95rem);
+  color: var(--text-dim);
+  text-align: center;
+  margin-bottom: 1.6rem;
+}
+
+/* ── Safes Row — flex, no fixed px, can't overflow ───── */
+.safes {
+  display: flex;
+  gap: min(3.5vw, 14px);
+  justify-content: center;
+  align-items: flex-end;
+  width: 100%;
+  /* Contain within app padding — no overflow */
+}
+
+/* ── Single Safe ─────────────────────────────────────── */
+.safe {
+  /* Flex-based: shrinks proportionally, won't exceed container */
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 112px;
+  aspect-ratio: 3 / 4;
+  position: relative;
+  perspective: 700px;
+  cursor: pointer;
+  user-select: none;
+  animation: safeFloat 2.4s ease-in-out infinite;
+}
+
+.safe--center {
+  flex: 1.15 1 0;
+  max-width: 124px;
+  animation-delay: -0.8s;
+  z-index: 2;
+}
+
+.safe:last-child { animation-delay: -1.6s; }
+
+/* ── Safe Interior (revealed on open) ───────────────── */
+.safe-interior {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--r-sm);
+  background: #040412;
+  border: 2px solid #2a2a55;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.safe.is-win .safe-interior {
+  background: radial-gradient(circle at 50% 55%, #1a1200 0%, #040412 70%);
+  border-color: var(--gold);
+  box-shadow: inset 0 0 24px rgba(255, 215, 0, 0.12);
+}
+
+.result { font-size: clamp(2rem, 8.5vw, 3rem); }
+
+/* ── Safe Door (the SVG face that flips open) ─────────── */
+.safe-door {
+  position: absolute;
+  inset: 0;
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transition: transform 0.52s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: var(--r-sm);
+  overflow: hidden;
+  /* Subtle drop-shadow gives depth */
+  filter: drop-shadow(2px 4px 10px rgba(0, 0, 30, 0.7));
+}
+
+.safe-door svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Dial ring spin — centered on viewBox point (45, 57) */
+.safe:not(.is-open) .dial-ring {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: dialSpin 14s linear infinite;
+}
+
+/* ── Safe States ─────────────────────────────────────── */
+.safe.is-open {
+  animation: none;
+  cursor: default;
+}
+
+.safe.is-open .safe-door {
+  transform: rotateY(-128deg);
+  filter: none;
+}
+
+.safe.is-miss { animation: safeMiss 0.5s ease-in-out; }
+
+.safe.is-win .safe-door {
+  filter:
+    drop-shadow(0 0 10px rgba(255, 215, 0, 0.6))
+    drop-shadow(0 0 24px rgba(255, 215, 0, 0.3));
+}
+
+.safe.is-disabled {
+  pointer-events: none;
+  animation: none;
+}
+.safe.is-disabled:not(.is-open) { opacity: 0.42; }
+
+/* Hover — lift + glow */
+.safe:not(.is-open):not(.is-disabled):hover {
+  filter: drop-shadow(0 6px 18px rgba(110, 90, 220, 0.55));
+  transform: translateY(-5px);
+  animation: none;
+}
+
+.step-hint {
+  margin-top: 1.2rem;
+  min-height: 1.4em;
+  font-size: clamp(0.76rem, 3.4vw, 0.88rem);
+  color: var(--text-dim);
+  text-align: center;
+  transition: opacity 0.22s;
+}
+
+/* ── Win Overlay ─────────────────────────────────────── */
+.win-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 12, 0.80);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 200;
+  animation: fadeIn 0.28s ease;
+}
+.win-overlay[aria-hidden="true"] { display: none; }
+
+.win-card {
+  width: 100%;
+  max-width: 480px;
+  background: linear-gradient(155deg, #1a1a3e 0%, #0e0e26 100%);
+  border: 1px solid rgba(255, 215, 0, 0.22);
+  border-bottom: none;
+  border-radius: var(--r-lg) var(--r-lg) 0 0;
+  padding: 1.8rem 1.4rem 2.6rem;
+  text-align: center;
+  box-shadow: 0 -6px 40px rgba(255, 215, 0, 0.10);
+  animation: slideUp 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.trophy {
+  font-size: 2.8rem;
+  display: block;
+  margin-bottom: 0.4rem;
+  animation: trophyBounce 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) 0.15s both;
+}
+
+.win-card h2 {
+  font-size: clamp(1.3rem, 5.5vw, 1.7rem);
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.35rem;
+}
+
+.win-card p {
+  color: var(--text-dim);
+  font-size: clamp(0.82rem, 3.6vw, 0.96rem);
+  margin-bottom: 1.1rem;
+}
+
+.reward-badge {
+  background: linear-gradient(135deg, #0b220b, #101a10);
+  border: 1.5px solid var(--green);
+  border-radius: var(--r-sm);
+  padding: 0.6rem 1rem;
+  margin-bottom: 1.1rem;
+  box-shadow: 0 0 14px rgba(57, 255, 20, 0.16);
+}
+.reward-badge span {
+  color: var(--green);
+  font-weight: 700;
+  font-size: clamp(0.88rem, 3.8vw, 1.05rem);
+}
+
+.timer-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  color: var(--text-dim);
+  font-size: clamp(0.76rem, 3.4vw, 0.86rem);
+  margin-bottom: 1.2rem;
+}
+
+.countdown {
+  font-size: clamp(1.35rem, 5.5vw, 1.6rem);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  font-family: 'Courier New', monospace;
+  color: var(--danger);
+  animation: timerBlink 1s ease-in-out infinite;
+}
+
+.cta {
+  display: block;
+  width: 100%;
+  padding: 0.95rem 1rem;
+  background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+  color: #000;
+  font-size: clamp(0.95rem, 4.5vw, 1.15rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  border: none;
+  border-radius: var(--r-md);
+  cursor: pointer;
+  animation: ctaGlow 1.7s ease-in-out infinite;
+  transition: transform 0.12s, box-shadow 0.12s;
+}
+.cta:active { transform: scale(0.97); }
+
+/* ── Confetti ─────────────────────────────────────────── */
+#confetti-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 100;
+  overflow: hidden;
+}
+.cp {
+  position: absolute;
+  top: -12px;
+  border-radius: 2px;
+  animation: cpFall linear forwards;
+}
+
+/* ── Keyframes ───────────────────────────────────────── */
+@keyframes safeFloat {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-7px); }
+}
+
+@keyframes safeMiss {
+  0%, 100% { transform: translateX(0) rotate(0deg); }
+  18%       { transform: translateX(-10px) rotate(-2.5deg); }
+  36%       { transform: translateX(10px)  rotate(2.5deg); }
+  54%       { transform: translateX(-7px)  rotate(-1.5deg); }
+  72%       { transform: translateX(7px)   rotate(1.5deg); }
+  90%       { transform: translateX(-3px); }
+}
+
+@keyframes dialSpin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn  { from { opacity: 0; } to { opacity: 1; } }
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}
+
+@keyframes trophyBounce {
+  0%   { transform: scale(0) rotate(-15deg); opacity: 0; }
+  60%  { transform: scale(1.25) rotate(5deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+@keyframes timerBlink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
+}
+
+@keyframes ctaGlow {
+  0%, 100% { box-shadow: 0 4px 20px rgba(255, 140, 0, 0.45); }
+  50%       { box-shadow: 0 4px 36px rgba(255, 140, 0, 0.72), 0 0 16px rgba(255, 215, 0, 0.28); }
+}
+
+@keyframes cpFall {
+  to { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+}
+
+/* ── Reduced motion ───────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .safe, .cta, .countdown, .dial-ring { animation: none !important; }
+  .safe-door { transition: none; }
+}

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#0a0a1a">
+  <meta name="robots" content="noindex, nofollow">
+  <title data-i18n="meta_title">Promo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+
+  <header class="page-header">
+    <div class="stars" aria-hidden="true">✦ ✦ ✦</div>
+    <h1 data-i18n="title"></h1>
+    <p data-i18n="subtitle"></p>
+  </header>
+
+  <section class="game">
+    <p class="game-hint" data-i18n="hint"></p>
+
+    <div class="safes" id="safes">
+
+      <!-- Safe 0 -->
+      <div class="safe" data-idx="0">
+        <div class="safe-interior"><span class="result" aria-live="polite"></span></div>
+        <div class="safe-door">
+          <svg viewBox="0 0 90 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="1" y="1" width="88" height="118" rx="7" fill="#1c1c40" stroke="#38387a" stroke-width="2"/>
+            <rect x="12" y="2" width="66" height="3" rx="1.5" fill="rgba(255,255,255,0.07)"/>
+            <rect x="1" y="1" width="11" height="118" rx="5" fill="#26265a"/>
+            <rect x="0" y="22" width="13" height="15" rx="4" fill="#42428a" stroke="#5252aa" stroke-width="1"/>
+            <rect x="0" y="83" width="13" height="15" rx="4" fill="#42428a" stroke="#5252aa" stroke-width="1"/>
+            <circle cx="21" cy="17" r="4.5" fill="#141438" stroke="#4848aa" stroke-width="2"/>
+            <circle cx="71" cy="17" r="4.5" fill="#141438" stroke="#4848aa" stroke-width="2"/>
+            <circle cx="21" cy="103" r="4.5" fill="#141438" stroke="#4848aa" stroke-width="2"/>
+            <circle cx="71" cy="103" r="4.5" fill="#141438" stroke="#4848aa" stroke-width="2"/>
+            <!-- Dial outer ring -->
+            <circle cx="45" cy="57" r="22" fill="#0d0d28" stroke="#ffd700" stroke-width="2.5"/>
+            <!-- Tick marks (animated via .dial-ring) -->
+            <g class="dial-ring">
+              <line x1="45" y1="35" x2="45" y2="40" stroke="#ffd700" stroke-width="2"   stroke-linecap="round" transform="rotate(  0 45 57)"/>
+              <line x1="45" y1="35" x2="45" y2="39" stroke="#ffd700" stroke-width="1.5" stroke-linecap="round" transform="rotate( 30 45 57)"/>
+              <line x1="45" y1="35" x2="45" y2="39" stroke="#ffd700" stroke-width="1.5" stroke-linecap="round" transform="rotate( 60 45 57)"/>
+              <line x1="45" y1="35" x2="45" y2="40" stroke="#ffd700" stroke-width="2"   stroke-linecap="round" transform="rotate( 90 45 57)"/>
+              <line x1="45" y1="35" x2="45" y2="39" stroke="#ffd700" stroke-width="1.5" stroke-linecap="round" transform="rotate(120 45 57)"/>
+              <line x1="45" y1="35" x2="45" y2="39" stroke="#ffd700" stroke-width="1.5" stroke-linecap="round" transform="rotate(150 45 57)"/>
+              <line x1="45" y1="35" x2="45" y2="40" stroke="#ffd700" stroke-width="2"   stroke-linecap="round" transform="rotate(180 45 57)"/>
+              <line x1="45" y1="35" x2="45" y2="39" stroke="#ffd700" stroke-width="1.5" stroke-linecap="round" transform="rotate(210 45 57)"/>
+              <line x1="45" y1="35" x2="45" y2="39" stroke="#ffd700" stroke-width="1.5" stroke-linecap="round" transform="rotate(240 45 57)"/>
+              <line x1="45" y1="35" x2="45" y2="40" stroke="#ffd700" stroke-width="2"   stroke-linecap="round" transform="rotate(270 45 57)"/>
+              <line x1="45" y1="35" x2="45" y2="39" stroke="#ffd700" stroke-width="1.5" stroke-linecap="round" transform="rotate(300 45 57)"/>
+              <line x1="45" y1="35" x2="45" y2="39" stroke="#ffd700" stroke-width="1.5" stroke-linecap="round" transform="rotate(330 45 57)"/>
+            </g>
+            <!-- Dial face -->
+            <circle cx="45" cy="57" r="16" fill="#505060" stroke="#6a6a7a" stroke-width="1.5"/>
+            <circle cx="45" cy="57" r="10" fill="#343444" stroke="#545464" stroke-width="1"/>
+            <circle cx="45" cy="57" r="3.5" fill="#888898"/>
+            <!-- Pointer (fixed, on top of face) -->
+            <line x1="45" y1="54" x2="45" y2="43" stroke="#ffd700" stroke-width="2.5" stroke-linecap="round"/>
+            <!-- Handle -->
+            <rect x="67" y="66" width="9" height="4" rx="2" fill="#c8a500" stroke="#ffd700" stroke-width="1"/>
+            <rect x="69" y="68" width="5" height="18" rx="2.5" fill="#a88000"/>
+            <rect x="67" y="84" width="9" height="4" rx="2" fill="#c8a500" stroke="#ffd700" stroke-width="1"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Safe 1 (center, slightly larger via CSS) -->
+      <div class="safe safe--center" data-idx="1">
+        <div class="safe-interior"><span class="result" aria-live="polite"></span></div>
+        <div class="safe-door">
+          <svg viewBox="0 0 90 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="1" y="1" width="88" height="118" rx="7" fill="#1c1c40" stroke="#38387a" stroke-width="2"/>
+            <rect x="12" y="2" width="66" height="3" rx="1.5" fill="rgba(255,255,255,0.07)"/>
+            <rect x="1" y="1" width="11" height="118" rx="5" fill="#26265a"/>
+            <rect x="0" y="22" width="13" height="15" rx="4" fill="#42428a" stroke="#5252aa" stroke-width="1"/>
+            <rect x="0" y="83" width="13" height="15" rx="4" fill="#42428a" stroke="#5252aa" stroke-width="1"/>
+            <circle cx="21" cy="17" r="4.5" fill="#141438" stroke="#4848aa" stroke-width="2"/>
+            <circle cx="71" cy="17" r="4.5" fill="#141438" stroke="#4848aa" stroke-width="2"/>
+            <circle cx="21" cy="103" r="4.5" fill="#141438" stroke="#4848aa" stroke-width="2"/>
+            <circle cx="71" cy="103" r="4.5" fill="#141438" stroke="#4848aa" stroke-width="2"/>
+            <circle cx="45" cy="57" r="22" fill="#0d0d28" stroke="#ffd700" stroke-width="2.5"/>
+            <g class="dial-ring">
+              <line x1="45" y1="35" x2="45" y2="40" stroke="#ffd700" stroke-width="2"   stroke-linecap="round" transform="rotate(  0 45 57)"/>
+              <line x1="45" y1="35" x2="45" y2="39" stroke="#ffd700" stroke-width="1.5" stroke-linecap="round" transform="rotate( 30 45 57)"/>
+              <line x1="45" y1="35" x2="45" y2="39" stroke="#ffd700" stroke-width="1.5" stroke-linecap="round" transform="rotate( 60 45 57)"/>
+              <line x1="45" y1="35" x2="45" y2="40" stroke="#ffd700" stroke-width="2"   stroke-linecap="round" transform="rotate( 90 45 57)"/>
+              <line x1="45" y1="35" x2="45" y2="39" stroke="#ffd700" stroke-width="1.5" stroke-linecap="round" transform="rotate(120 45 57)"/>
+              <line x1="45" y1="35" x2="45" y2="39" stroke="#ffd700" stroke-width="1.5" stroke-linecap="round" transform="rotate(150 45 57)"/>
+              <line x1="45" y1="35" x2="45" y2="40" stroke="#ffd700" stroke-width="2"   stroke-linecap="round" transform="rotate(180 45 57)"/>
+              <line x1="45" y1="35" x2="45" y2="39" stroke="#ffd700" stroke-width="1.5" stroke-linecap="round" transform="rotate(210 45 57)"/>
+              <line x1="45" y1="35" x2="45" y2="39" stroke="#ffd700" stroke-width="1.5" stroke-linecap="round" transform="rotate(240 45 57)"/>
+              <line x1="45" y1="35" x2="45" y2="40" stroke="#ffd700" stroke-width="2"   stroke-linecap="round" transform="rotate(270 45 57)"/>
+              <line x1="45" y1="35" x2="45" y2="39" stroke="#ffd700" stroke-width="1.5" stroke-linecap="round" transform="rotate(300 45 57)"/>
+              <line x1="45" y1="35" x2="45" y2="39" stroke="#ffd700" stroke-width="1.5" stroke-linecap="round" transform="rotate(330 45 57)"/>
+            </g>
+            <circle cx="45" cy="57" r="16" fill="#505060" stroke="#6a6a7a" stroke-width="1.5"/>
+            <circle cx="45" cy="57" r="10" fill="#343444" stroke="#545464" stroke-width="1"/>
+            <circle cx="45" cy="57" r="3.5" fill="#888898"/>
+            <line x1="45" y1="54" x2="45" y2="43" stroke="#ffd700" stroke-width="2.5" stroke-linecap="round"/>
+            <rect x="67" y="66" width="9" height="4" rx="2" fill="#c8a500" stroke="#ffd700" stroke-width="1"/>
+            <rect x="69" y="68" width="5" height="18" rx="2.5" fill="#a88000"/>
+            <rect x="67" y="84" width="9" height="4" rx="2" fill="#c8a500" stroke="#ffd700" stroke-width="1"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Safe 2 -->
+      <div class="safe" data-idx="2">
+        <div class="safe-interior"><span class="result" aria-live="polite"></span></div>
+        <div class="safe-door">
+          <svg viewBox="0 0 90 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="1" y="1" width="88" height="118" rx="7" fill="#1c1c40" stroke="#38387a" stroke-width="2"/>
+            <rect x="12" y="2" width="66" height="3" rx="1.5" fill="rgba(255,255,255,0.07)"/>
+            <rect x="1" y="1" width="11" height="118" rx="5" fill="#26265a"/>
+            <rect x="0" y="22" width="13" height="15" rx="4" fill="#42428a" stroke="#5252aa" stroke-width="1"/>
+            <rect x="0" y="83" width="13" height="15" rx="4" fill="#42428a" stroke="#5252aa" stroke-width="1"/>
+            <circle cx="21" cy="17" r="4.5" fill="#141438" stroke="#4848aa" stroke-width="2"/>
+            <circle cx="71" cy="17" r="4.5" fill="#141438" stroke="#4848aa" stroke-width="2"/>
+            <circle cx="21" cy="103" r="4.5" fill="#141438" stroke="#4848aa" stroke-width="2"/>
+            <circle cx="71" cy="103" r="4.5" fill="#141438" stroke="#4848aa" stroke-width="2"/>
+            <circle cx="45" cy="57" r="22" fill="#0d0d28" stroke="#ffd700" stroke-width="2.5"/>
+            <g class="dial-ring">
+              <line x1="45" y1="35" x2="45" y2="40" stroke="#ffd700" stroke-width="2"   stroke-linecap="round" transform="rotate(  0 45 57)"/>
+              <line x1="45" y1="35" x2="45" y2="39" stroke="#ffd700" stroke-width="1.5" stroke-linecap="round" transform="rotate( 30 45 57)"/>
+              <line x1="45" y1="35" x2="45" y2="39" stroke="#ffd700" stroke-width="1.5" stroke-linecap="round" transform="rotate( 60 45 57)"/>
+              <line x1="45" y1="35" x2="45" y2="40" stroke="#ffd700" stroke-width="2"   stroke-linecap="round" transform="rotate( 90 45 57)"/>
+              <line x1="45" y1="35" x2="45" y2="39" stroke="#ffd700" stroke-width="1.5" stroke-linecap="round" transform="rotate(120 45 57)"/>
+              <line x1="45" y1="35" x2="45" y2="39" stroke="#ffd700" stroke-width="1.5" stroke-linecap="round" transform="rotate(150 45 57)"/>
+              <line x1="45" y1="35" x2="45" y2="40" stroke="#ffd700" stroke-width="2"   stroke-linecap="round" transform="rotate(180 45 57)"/>
+              <line x1="45" y1="35" x2="45" y2="39" stroke="#ffd700" stroke-width="1.5" stroke-linecap="round" transform="rotate(210 45 57)"/>
+              <line x1="45" y1="35" x2="45" y2="39" stroke="#ffd700" stroke-width="1.5" stroke-linecap="round" transform="rotate(240 45 57)"/>
+              <line x1="45" y1="35" x2="45" y2="40" stroke="#ffd700" stroke-width="2"   stroke-linecap="round" transform="rotate(270 45 57)"/>
+              <line x1="45" y1="35" x2="45" y2="39" stroke="#ffd700" stroke-width="1.5" stroke-linecap="round" transform="rotate(300 45 57)"/>
+              <line x1="45" y1="35" x2="45" y2="39" stroke="#ffd700" stroke-width="1.5" stroke-linecap="round" transform="rotate(330 45 57)"/>
+            </g>
+            <circle cx="45" cy="57" r="16" fill="#505060" stroke="#6a6a7a" stroke-width="1.5"/>
+            <circle cx="45" cy="57" r="10" fill="#343444" stroke="#545464" stroke-width="1"/>
+            <circle cx="45" cy="57" r="3.5" fill="#888898"/>
+            <line x1="45" y1="54" x2="45" y2="43" stroke="#ffd700" stroke-width="2.5" stroke-linecap="round"/>
+            <rect x="67" y="66" width="9" height="4" rx="2" fill="#c8a500" stroke="#ffd700" stroke-width="1"/>
+            <rect x="69" y="68" width="5" height="18" rx="2.5" fill="#a88000"/>
+            <rect x="67" y="84" width="9" height="4" rx="2" fill="#c8a500" stroke="#ffd700" stroke-width="1"/>
+          </svg>
+        </div>
+      </div>
+
+    </div><!-- /safes -->
+
+    <p id="step-hint" class="step-hint" aria-live="polite"></p>
+  </section>
+
+  <!-- Win overlay -->
+  <div id="win-overlay" class="win-overlay" aria-hidden="true">
+    <div class="win-card" role="dialog" aria-modal="true" aria-labelledby="win-heading">
+      <div class="trophy" aria-hidden="true">🏆</div>
+      <h2 id="win-heading" data-i18n="win_title"></h2>
+      <p data-i18n="win_desc"></p>
+      <div class="reward-badge"><span data-i18n="reward_text"></span></div>
+      <div class="timer-row">
+        <span data-i18n="timer_label"></span>
+        <time id="countdown" class="countdown">05:00</time>
+      </div>
+      <button id="cta" class="cta" data-i18n="button_action"></button>
+    </div>
+  </div>
+
+  <div id="confetti-container" aria-hidden="true"></div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
